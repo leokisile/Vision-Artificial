@@ -1,6 +1,6 @@
 function normalizadas = normalizar(distancias)
     % NORMALIZAR: Normaliza a escalares un conjunto de valores (distancias)
-    %   distancias: Matriz num‚rica donde cada columna representa la distancia calculada de un vector al centroide de una clase.
+    %   distancias: Matriz numerica donde cada columna representa la distancia calculada de un vector al centroide de una clase.
 
     normalizadas = zeros(1, size(distancias, 2));
 

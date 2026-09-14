@@ -1,3 +1,5 @@
+addpath("libreria");
+
 % Clase 1: Ubicada en la zona inferior izquierda
 c1 = [ 5,  8, 12,  6, 10, 15,  7;
        8, 15, 10, 18, 12,  5, 20 ];
@@ -25,7 +27,7 @@ repetir = 's';
 while repetir == 's'
   % Lectura de los datos
   contador = contador + 1;
-  disp("Los limites tanto en x c¢mo en y son de [0,60]")
+  disp("Los limites tanto en x como en y son de [0,60]")
   if contador > 0
     vx = input("Dame la otra coordenada del vector en x=");
     vy = input("Dame la otra coordenada del vector en y=");
