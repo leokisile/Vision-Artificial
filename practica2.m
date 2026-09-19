@@ -36,7 +36,7 @@ while repetir == 's'
     vy = input("Dame la coordenada del vector en y=");
   endif
 
-  if vx >60 || vy > 60
+  if vx >60 || vy > 60 || vx < 0 || vy < 0
     disp("El vector excede el limite permitido, por lo que no pertenece a ninguna clase")
     repetir = input("Quiere ingresar otro vector(s/n)? ", "s");
     if repetir == 'n'
@@ -73,6 +73,22 @@ while repetir == 's'
     dato = find(normalizadas == minimo)
     fprintf("El vector x pertenece a la clase %d\n", dato)
 
+  else
+    if opc == 2
+      distancias = calcular_mahalanobis(x, centroides, clases)
+
+      % Normalizar distancias
+      normalizadas = normalizar(distancias)
+
+      % Encontrar el minimo, su posicion y devolver el resultado
+      minimo = min(min(normalizadas))
+      dato = find(normalizadas == minimo)
+      fprintf("El vector x pertenece a la clase %d\n", dato)
+
+    else
+      disp("Seleccione una opcion valida")
+    endif
+
   endif
 
   % Validacion del bucle del menu
@@ -82,11 +98,3 @@ while repetir == 's'
   endif
 
 end
-
-
-dato = [-1 1 0; -1 1 0]
-dato1 = dato' %Matriz traspuesta
-resP = dato * dato1
-dato = (1/length(c1))*resP
-
-inversa = inv(resP) %Si el determinante = 0, colocar la misma matriz

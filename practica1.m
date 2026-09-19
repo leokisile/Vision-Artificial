@@ -36,7 +36,7 @@ while repetir == 's'
     vy = input("Dame la coordenada del vector en y=");
   endif
 
-  if vx >60 || vy > 60
+  if vx > 60 || vy > 60 || vx < 0 || vy < 0
     disp("El vector excede el limite permitido, por lo que no pertenece a ninguna clase")
     repetir = input("Quiere ingresar otro vector(s/n)? ", "s");
     if repetir == 'n'
