@@ -71,7 +71,11 @@ while repetir == 's'
     % Encontrar el minimo, su posicion y devolver el resultado
     minimo = min(min(normalizadas))
     dato = find(normalizadas == minimo)
-    fprintf("El vector x pertenece a la clase %d\n", dato)
+    if length(dato) > 1
+      disp('Se encontraron m£ltiples clases');
+    else
+      fprintf("El vector x pertenece a la clase %d\n", dato)
+    endif
 
   else
     if opc == 2
@@ -83,7 +87,11 @@ while repetir == 's'
       % Encontrar el minimo, su posicion y devolver el resultado
       minimo = min(min(normalizadas))
       dato = find(normalizadas == minimo)
-      fprintf("El vector x pertenece a la clase %d\n", dato)
+      if length(dato) > 1
+        disp('Se encontraron m£ltiples clases');
+      else
+        fprintf("El vector x pertenece a la clase %d\n", dato)
+      endif
 
     else
       disp("Seleccione una opcion valida")
