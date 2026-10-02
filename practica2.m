@@ -72,7 +72,7 @@ while repetir == 's'
     minimo = min(min(normalizadas))
     dato = find(normalizadas == minimo)
     if length(dato) > 1
-      disp('Se encontraron m£ltiples clases');
+      disp('Se encontraron multiples clases');
     else
       fprintf("El vector x pertenece a la clase %d\n", dato)
     endif
@@ -88,7 +88,7 @@ while repetir == 's'
       minimo = min(min(normalizadas))
       dato = find(normalizadas == minimo)
       if length(dato) > 1
-        disp('Se encontraron m£ltiples clases');
+        disp('Se encontraron multiples clases');
       else
         fprintf("El vector x pertenece a la clase %d\n", dato)
       endif
