@@ -1,23 +1,43 @@
-function horizontal = corte_horizontal(img)
-    % corte_horizontal: Divide la imagen en 3 franjas horizontales, cada una con un solo canal del RGB
-    %   img: Matriz de la imagen a aplicar el corte
+function CortHor = corte_horizontal(imagen, cortes, corte, r, g, b)
+    % CORTE_HORIZONTAL : Divide una imagen dada en la cantidad de cortes deseados
+    %   imagen: imagen recibida .
+    %   cortes: numero de cortes iguales deseados.
+    %   corte: corte a extraer desde 1 hasta cortes
+    %   r,g,b: bandera de que canal recuperar
+    copia = imagen;
+    copia(:, :, :)= 0;
+    corte = corte -1;
+    [m, n, canal]=size(copia);
+    pix_por_corte = round(m/cortes);
+    inicio = corte * pix_por_corte;
+    fin = inicio + pix_por_corte -1;
 
-    [m, n, canales]=size(img);
-    horizontal = img;
-    corteh = round(m/3);
+    if pix_por_corte < 10
+      CortHor = copia;
+      return
+    end
+    if corte == 0
+      inicio=1;
+    end
+    if corte == cortes -1
+      fin=m;
+    end
 
-    % Rojo
-    horizontal(1:corteh,:,1);
-    horizontal(1:corteh,:,2)=0;
-    horizontal(1:corteh,:,3)=0;
+    if canal == 3
+      if r ~= 0
+        copia(inicio:fin, :, 1) = imagen(inicio:fin, :, 1);
+      end
+      if g ~= 0
+        copia(inicio:fin, :, 2) = imagen(inicio:fin, :, 2);
+      end
+      if b ~= 0
+        copia(inicio:fin, :, 3) = imagen(inicio:fin, :, 3);
+      end
+    else
+      copia(inicio:fin, :, :) = imagen(inicio:fin, :, :);
 
-    % Verde
-    horizontal(corteh+1:2*corteh,:,1)=0;
-    horizontal(corteh+1:2*corteh,:,2);
-    horizontal(corteh+1:2*corteh,:,3)=0;
+    end
+    CortHor = copia;
 
-    % Azul
-    horizontal(2*corteh+1:m,:,1)=0;
-    horizontal(2*corteh+1:m,:,2)=0;
-    horizontal(2*corteh+1:m,:,3);
+
 end
