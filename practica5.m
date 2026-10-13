@@ -33,27 +33,27 @@ while repetir == 's'
   figure(1)
 
   % Imagen Original
-  subplot(3, 2, 1);
+  subplot(2, 3, 1);
   imshow(img);
   title("Original");
 
   % Vaciada
-  subplot(3, 2, 2);
+  subplot(2, 3, 2);
   imshow(vaciada);
   title("Imagen a predecir");
 
   % Predicha
-  subplot(3, 2, 3);
+  subplot(2, 3, 3);
   imshow(predicha);
   title("Imagen predicha");
 
   % Error
-  subplot(3, 2, 4);
+  subplot(2, 3, 4);
   imshow(error_vis);
   title("Error encontrado");
 
   % Imagen recuperada
-  subplot(3, 2, 5);
+  subplot(2, 3, 5);
   imshow(img_reconstruida);
   title(sprintf('Imagen reconstruida con %d bits', n));
 

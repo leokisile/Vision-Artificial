@@ -5,8 +5,7 @@ warning off all
 
 addpath("libreria");
 
-imagen=imread('C:\LOCAL\Superior\5to\Vision\Codigos en clase\test.png'); %ubicacion imagen
-%imagen=imread('C:\LOCAL\TRABAJOS ANGEL\SUPERIOR\5\vision artificial\Codigos en clase\test.png');
+imagen=imread('imagenes\metrobus.png'); %ubicacion imagen
 continuar = true;
 
 while continuar
