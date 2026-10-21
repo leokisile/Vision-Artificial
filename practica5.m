@@ -52,8 +52,13 @@ while repetir == 's'
   imshow(error_vis);
   title("Error encontrado");
 
-  % Imagen recuperada
+  % MEQ-1
   subplot(2, 3, 5);
+  imshow(MEQ_1);
+  title('MEQ_1');
+
+  % Imagen recuperada
+  subplot(2, 3, 6);
   imshow(img_reconstruida);
   title(sprintf('Imagen reconstruida con %d bits', n));
 
