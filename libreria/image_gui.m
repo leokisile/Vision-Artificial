@@ -12,7 +12,7 @@ function resultados = image_gui()
     ax = axes('Parent', fig, 'Units', 'pixels', 'Position', [40, 50, 520, 520]);
     axis(ax, 'off');
 
-    % --- Controles de la Interfaz (Lado derecho) ---
+% --- Controles de la Interfaz (Lado derecho) ---
     uicontrol('Style', 'pushbutton', 'String', 'Cargar Imagen', ...
         'Position', [590, 535, 260, 45], 'FontSize', 11, 'FontWeight', 'bold', ...
         'Callback', @load_image_callback);
@@ -37,8 +37,20 @@ function resultados = image_gui()
         'String', {'Euclidiana', 'Mahalanobis', 'Max prob'}, ...
         'Position', [590, 280, 260, 35], 'FontSize', 10);
 
+    % --- Nuevos controles reubicados debajo del select ---
+    uicontrol('Style', 'text', 'String', 'K-Cross Validation:', ...
+        'Position', [590, 235, 120, 25], 'HorizontalAlignment', 'left', 'FontSize', 10);
+    txt_kcross = uicontrol('Style', 'edit', 'String', '20', ...
+        'Position', [720, 233, 130, 30], 'FontSize', 10);
+
+    uicontrol('Style', 'text', 'String', 'K-Leave Out:', ...
+        'Position', [590, 190, 120, 25], 'HorizontalAlignment', 'left', 'FontSize', 10);
+    txt_kleave = uicontrol('Style', 'edit', 'String', '2', ...
+        'Position', [720, 188, 130, 30], 'FontSize', 10);
+
+    % --- Botón de ejecutar cálculo reubicado más abajo ---
     uicontrol('Style', 'pushbutton', 'String', 'Ejecutar cálculo', ...
-        'Position', [590, 190, 260, 50], 'FontSize', 11, 'FontWeight', 'bold', ...
+        'Position', [590, 120, 260, 45], 'FontSize', 11, 'FontWeight', 'bold', ...
         'BackgroundColor', [0.1, 0.5, 0.2], 'ForegroundColor', [1, 1, 1], ...
         'Callback', @calculate_callback);
 
@@ -94,6 +106,8 @@ function resultados = image_gui()
     function calculate_callback(~, ~)
         n_clases = str2double(get(txt_clases, 'String'));
         n_rep = str2double(get(txt_rep, 'String'));
+        kcross = str2double(get(txt_kcross, 'String'));
+        kleave = str2double(get(txt_kleave, 'String'));
         pop_idx = get(pop_select, 'Value');
         pop_options = get(pop_select, 'String');
 
@@ -121,9 +135,12 @@ function resultados = image_gui()
 
         % Empaquetar los resultados para enviarlos al archivo principal
         resultados = struct();
+        resultados.imagen = img_data;
         resultados.metodo = pop_options{pop_idx};
         resultados.n_clases = n_clases;
         resultados.n_rep = n_rep;
+        resultados.kcross = kcross;
+        resultados.kleave = kleave;
         resultados.rects = rects_data;
         resultados.puntos_aleatorios = puntos_por_clase;
 

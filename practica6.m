@@ -12,8 +12,11 @@ datos_salida = image_gui();
 % Verificar si el usuario completó el proceso o cerró la ventana
 if ~isempty(datos_salida)
     disp('----------------------------------------');
+    [m, n, canales] = size(datos_salida.imagen)
     disp('Datos recibidos exitosamente en el main:');
     fprintf(' - Método elegido: %s\n', datos_salida.metodo);
+    fprintf(' - Iteraciones para Cross Validation: %d\n', datos_salida.kcross);
+    fprintf(' - K para K-Leave Out: %d\n', datos_salida.kleave);
     fprintf(' - Clases totales: %d\n', datos_salida.n_clases);
     fprintf(' - Representantes por clase: %d\n', datos_salida.n_rep);
 
@@ -26,3 +29,14 @@ if ~isempty(datos_salida)
 else
     disp('El usuario cerró la interfaz sin completar el proceso.');
 end
+
+% Extraccion de valores de los pixeles divididos por clase
+valores = valor_pixel(datos_salida.puntos_aleatorios, datos_salida.n_clases, datos_salida.imagen);
+
+% Metodos de validacion
+
+% Resutitution: Entrena y prueba con todas
+
+% K-Cross validation (50-50) con 20 iteraciones
+
+% Leave K-out: Deja k datos para probar, los demas para entrenar
