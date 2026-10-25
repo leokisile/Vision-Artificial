@@ -4,7 +4,7 @@ function normalizadas = normalizar(distancias)
 
     normalizadas = zeros(1, size(distancias, 2));
 
-    suma = sum(distancias)
+    suma = sum(distancias);
 
     for i = 1:size(distancias,2)
         d_actual = distancias(1,i);
@@ -13,7 +13,7 @@ function normalizadas = normalizar(distancias)
         if suma > 0
           normalizadas(1, i) = (d_actual/suma)*100;
         else
-          normalizadas(1,i) = 0
+          normalizadas(1,i) = 0;
          endif
     end
 end

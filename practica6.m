@@ -1,8 +1,6 @@
-% ==========================================
-% Archivo Principal: main.m
-% ==========================================
 clear; clc; close all;
-addpath('libreria'); % Ruta donde guardaste image_gui.m
+addpath('libreria');
+pkg load image
 
 disp('Abriendo interfaz gráfica...');
 
@@ -30,13 +28,4 @@ else
     disp('El usuario cerró la interfaz sin completar el proceso.');
 end
 
-% Extraccion de valores de los pixeles divididos por clase
-valores = valor_pixel(datos_salida.puntos_aleatorios, datos_salida.n_clases, datos_salida.imagen);
-
-% Metodos de validacion
-
-% Resutitution: Entrena y prueba con todas
-
-% K-Cross validation (50-50) con 20 iteraciones
-
-% Leave K-out: Deja k datos para probar, los demas para entrenar
+ejecutar_proceso_clasificacion(datos_salida);

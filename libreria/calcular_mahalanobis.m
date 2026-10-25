@@ -1,25 +1,30 @@
 function mahalanobis = calcular_mahalanobis(vector, valores, clases)
-    % CALCULAR_MAHALANOBIS: Calcula la distancia de un vector a una lista de valores dadas
-    %   vector: Vector con cordenadas [vx, vy]
-    %   valores: Matriz numerica donde cada columna representa el centroide [cx; cy] de cada clase.
-    %   clases: Un cell array con las clases a considerar
+    % CALCULAR_MAHALANOBIS: Calcula la distancia de Mahalanobis para vectores RGB (3D)
 
-    n_clases = size(valores, 2);
+    n_clases = length(clases);
     mahalanobis = zeros(1, n_clases);
 
+    % Asegurar que el vector evaluado sea una fila (1x3)
+    vector = reshape(vector, 1, []);
+    dim = length(vector); % 3 para RGB
+
     for i = 1:n_clases
-      c_actual = clases{i};
-      mu = valores(:, i);
-      n_muestras = size(c_actual, 2);
+        c_actual = clases{i}; % Matriz de tamaño [m_muestras x 3]
+        [n_muestras, ~] = size(c_actual);
 
-      % Matriz de covarianza
-      c_centrado = c_actual - mu;
-      % Agrega una matriz de 1s de 2x2 para evitar la singularidad
-      sigma = (c_centrado * c_centrado')/(n_muestras) + eye(2) * 1e-5;
+        % Calcular el centroide directamente de las muestras de la clase (1 x 3)
+        mu = mean(c_actual, 1);
 
-      dif = vector - mu;
+        % Centrar los datos: cada muestra menos su media
+        c_centrado = c_actual - repmat(mu, n_muestras, 1);
 
-      mahalanobis(1, i) = sqrt((dif' * inv(sigma)) * dif);
-    endfor
+        % Matriz de covarianza de [dim x dim] (3x3)
+        sigma = (c_centrado' * c_centrado) / n_muestras + eye(dim) * 1e-5;
 
+        % Vector diferencia (1 x 3)
+        dif = vector - mu;
+
+        % Distancia de Mahalanobis
+        mahalanobis(1, i) = sqrt(dif * inv(sigma) * dif');
+    end
 end

@@ -3,7 +3,7 @@ function valores = valor_pixel(coordenadas, n_clases, imagen)
     %   coordenadas: Cell array con los puntos [x,y] de cada clase {i}
     %   n_clases: Numero total de clases
     %   imagen: Imagen de la cual extraer los valores
-
+    pkg load image
     valores = cell(n_clases, 1);
 
     for i = 1:n_clases
