@@ -154,31 +154,3 @@ function resultados = image_gui()
         delete(fig);
     end
 end
-
-% --- Funciones auxiliares modulares ---
-
-function dibujar_cuadrado(ax, rect_coords, indice_clase)
-    colores = ['r', 'g', 'b', 'c', 'm', 'y', 'k'];
-    color_actual = colores(mod(indice_clase - 1, length(colores)) + 1);
-
-    hold(ax, 'on');
-    rectangle(ax, 'Position', rect_coords, 'EdgeColor', color_actual, 'LineWidth', 2);
-    hold(ax, 'off');
-end
-
-function dibujar_puntos_clase(ax, puntos, indice_clase)
-    % Paleta de colores y símbolos (marcadores) disponibles para rotar
-    colores = ['r', 'g', 'b', 'c', 'm', 'y', 'k'];
-    simbolos = {'o', 's', '^', 'd', 'v', 'p', '*'}; % Círculo, Cuadrado, Triángulo, Diamante, etc.
-
-    color_actual = colores(mod(indice_clase - 1, length(colores)) + 1);
-    simbolo_actual = simbolos{mod(indice_clase - 1, length(simbolos)) + 1};
-
-    hold(ax, 'on');
-    plot(ax, puntos(:, 1), puntos(:, 2), simbolo_actual, ...
-         'Color', color_actual, ...
-         'MarkerFaceColor', color_actual, ...
-         'MarkerSize', 5, ...
-         'LineStyle', 'none');
-    hold(ax, 'off');
-end
